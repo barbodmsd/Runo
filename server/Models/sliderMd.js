@@ -11,6 +11,7 @@ const sliderSchema = new mongoose.Schema(
       {
         type: String,
         required: [true, "لطفا عکس را وارد کنید"],
+        default:''
       },
     ],
     categoryId: {

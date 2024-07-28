@@ -10,7 +10,7 @@ const categorySchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Blog'
     }]
-}<{timestamps:true})
+},{timestamps:true})
 
 const Category=mongoose.model('Category',categorySchema)
 export default Category
