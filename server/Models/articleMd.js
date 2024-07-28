@@ -1,20 +1,28 @@
 import mongoose from "mongoose";
 
-const aboutSchema=new mongoose.Schema({
-    title:{
-        type:String,
-        required:[true,'لطفا نام را وارد کنید'],
-        trim:true
+const articleSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: [true, "لطفا نام را وارد کنید"],
+      trim: true,
     },
-    description:{
-        type:String,
-        required:[true,'لطفا توضیحات را وارد کنید'],
+    description: {
+      short: String,
+      long: String,
+      required: [true, "لطفا توضیحات را وارد کنید"],
     },
-    img:{
-        type:String,
-        default:''
+    img: {
+      type: String,
+      default: "",
     },
-},{timestamps:true})
+    categoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
+  },
+  { timestamps: true }
+);
 
-const About=mongoose.model('About',aboutSchema)
-export default About
+const Article = mongoose.model("Article", articleSchema);
+export default Article;
