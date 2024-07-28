@@ -1,5 +1,6 @@
 import Category from "../Models/categoryMd.js";
 import catchAsync from "../Utils/catchAsync.js";
+import HandleError from "../Utils/handleError.js";
 import returnData from "../Utils/returnData.js";
 
 export const createCategory = catchAsync(async (req, res, next) => {
@@ -23,10 +24,7 @@ export const deleteCategory = catchAsync(async (req, res, next) => {
   try {
     await Category.findById(req.params.id);
   } catch (error) {
-    return returnData(res, 404, {
-      status: "fail",
-      message: " کتع گوری موردنظر وجود ندارد",
-    });
+    return next(new HandleError(" کته گوری موردنظر وجود ندارد", 404));
   }
   const deletedCategory = await Category.findByIdAndDelete(req.params.id);
   return returnData(res, 200, {
