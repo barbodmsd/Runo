@@ -3,6 +3,7 @@ import catchAsync from "../Utils/catchAsync.js";
 import returnData from "../Utils/returnData.js";
 import fs from "fs";
 import { __dirname } from "../app.js";
+import HandleError from "../Utils/handleError.js";
 
 export const createSlider = catchAsync(async (req, res, next) => {
   const img = req?.file?.filename || "";

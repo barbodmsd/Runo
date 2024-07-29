@@ -1,4 +1,9 @@
-import express from 'express'
-const bannerRoute=express.Router()
+import express from "express";
+import { createBanner, deleteBanner, getBanner } from "../Controllers/bannerCn.js";
+import upload from "../Utils/uploadFile.js";
+const bannerRoute = express.Router();
 
-export default bannerRoute 
+bannerRoute.route("/").post(upload.single("file"), createBanner).get(getBanner);
+bannerRoute.route("/:id").delete(deleteBanner);
+
+export default bannerRoute;
