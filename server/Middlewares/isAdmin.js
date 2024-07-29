@@ -1,6 +1,6 @@
-import catchAsync from "../Utils/catchAsync";
-import jwt from "jsonwebtoken";
-import HandleError from "../Utils/handleError";
+import catchAsync from "../Utils/catchAsync.js";
+import jwt from "jsonwebtoken.js";
+import HandleError from "../Utils/handleError.js";
 const isAdmin = catchAsync(async (req, res, next) => {
   try {
     const token = req?.headers?.token.split(" ")[1];
