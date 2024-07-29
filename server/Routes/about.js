@@ -10,9 +10,9 @@ const aboutRoute = express.Router();
 
 aboutRoute.route("/").post(upload.single("file"), createAbout).get(getAllAbout);
 aboutRoute
-  .route("/")
-  .patch(upload.single("file", updateAbout))
+  .route("/:id")
   .get(getAboutById)
+  .patch(upload.single("file"), updateAbout)
   .delete(deleteAbout);
 
 export default aboutRoute;

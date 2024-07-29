@@ -35,7 +35,7 @@ export const getAboutById = catchAsync(async (req, res, next) => {
 
 export const updateAbout = catchAsync(async (req, res, next) => {
   const img = req?.file?.filename || "";
-  const oldAbout = await About.findById(req.params.is);
+  const oldAbout = await About.findById(req.params.id);
   let updatedAbout;
   if (img) {
     updatedAbout = await About.findByIdAndUpdate(
@@ -62,6 +62,9 @@ export const deleteAbout = catchAsync(async (req, res, next) => {
   const deletedAbout = await About.findByIdAndDelete(req.params.id);
   if (!deletedAbout) {
     return next(new HandleError(" درباره ی  موردنظر وجود ندارد", 404));
+  }
+  if (oldAbout.img) {
+    fs.unlinkSync(__dirname + "/Public/Image/" + oldAbout.img);
   }
   return returnData(res, 200, {
     status: "success",
