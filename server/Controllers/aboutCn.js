@@ -63,8 +63,8 @@ export const deleteAbout = catchAsync(async (req, res, next) => {
   if (!deletedAbout) {
     return next(new HandleError(" درباره ی  موردنظر وجود ندارد", 404));
   }
-  if (oldAbout.img) {
-    fs.unlinkSync(__dirname + "/Public/Image/" + oldAbout.img);
+  if (deletedAbout.img) {
+    fs.unlinkSync(__dirname + "/Public/Image/" + deletedAbout.img);
   }
   return returnData(res, 200, {
     status: "success",
