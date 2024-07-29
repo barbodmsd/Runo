@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import Admin from "../Models/adminMd.js";
 import returnData from "../Utils/returnData.js";
 import HandleError from "../Utils/handleError.js";
+import { sendAuthCode } from "../Utils/smsHandler.js";
 
 export const register = catchAsync(async (req, res, next) => {
   const { password } = req?.body;
@@ -55,6 +56,20 @@ export const login = catchAsync(async (req, res, next) => {
   });
 });
 
-export const sendSms = catchAsync(async (req, res, next) => {});
+export const sendSms = catchAsync(async (req, res, next) => {
+    const { phone } = req?.body;
+    const admin=await Admin.findOne({phone})
+      if(!admin){
+          return next(new HandleError("شماره تلفن اشتباه است"));
+      }
+    const send = await sendAuthCode(phone);
+    if (!send.success) {
+      return next(new HandleError(send.message, 500));
+    }
+  return returnData(res,200,{
+    status:'success',
+    data:{send}
+  })
+});
 
 export const verifySms = catchAsync(async (req, res, next) => {});
