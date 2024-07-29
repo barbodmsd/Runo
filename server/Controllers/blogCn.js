@@ -34,13 +34,7 @@ export const getAllBlog = catchAsync(async (req, res, next) => {
 });
 
 export const getBlogById = catchAsync(async (req, res, next) => {
-//   let blog;
-//   try {
-//     blog = await Blog.findById(req.params.id);
-//   } catch (error) {
-//     return next(new HandleError(" بلاگ موردنظر وجود ندارد", 404));
-//   }
-const blog = await Blog.findById(req.params.id);
+  const blog = await Blog.findById(req.params.id);
   if (!blog) {
     return next(new HandleError(" بلاگ موردنظر وجود ندارد", 404));
   }
@@ -85,16 +79,10 @@ export const updateBlog = catchAsync(async (req, res, next) => {
 });
 
 export const deleteBlog = catchAsync(async (req, res, next) => {
-  //   try {
-  //     await Blog.findById(req.params.id);
-  //   } catch (error) {
-  //     return next(new HandleError(" بلاگ موردنظر وجود ندارد", 404));
-  //   }
-  const blog = await Blog.findById(req.params.id);
-  if (!blog) {
+  const deletedBlog = await Blog.findByIdAndDelete(req.params.id);
+  if (!deletedBlog) {
     return next(new HandleError(" بلاگ موردنظر وجود ندارد", 404));
   }
-  const deletedBlog = await Blog.findByIdAndDelete(req.params.id);
   if (deletedBlog.img) {
     fs.unlinkSync(__dirname + "/Public/Image/" + deletedBlog.img);
   }

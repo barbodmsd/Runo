@@ -22,12 +22,10 @@ export const getSlider = catchAsync(async (req, res, next) => {
 });
 
 export const deleteSlider = catchAsync(async (req, res, next) => {
-  try {
-    await Slider.findById(req.params.id);
-  } catch (error) {
-    return next(new HandleError(" اسلایدر موردنظر وجود ندارد", 404));
-  }
   const deletedSlider = await Slider.findByIdAndDelete(req.params.id);
+  if(!deletedSlider){
+    return next(new HandleError("اسلایدر موردنظر وجود ندارد", 404))
+  }
   if (deletedSlider.img) {
     fs.unlinkSync(__dirname + "/Public/Image/" + deletedSlider.img);
   }
