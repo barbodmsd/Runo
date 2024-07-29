@@ -68,7 +68,7 @@ export const updateArticle = catchAsync(async (req, res, next) => {
 export const deleteArticle = catchAsync(async (req, res, next) => {
   const deletedArticle = await Article.findByIdAndDelete(req.params.id);
   if (!deletedArticle) {
-    return next(new HandleError(" درباره ی  موردنظر وجود ندارد", 404));
+    return next(new HandleError("مقاله ی  موردنظر وجود ندارد", 404));
   }
   if (deletedArticle.img) {
     fs.unlinkSync(__dirname + "/Public/Image/" + deletedArticle.img);
