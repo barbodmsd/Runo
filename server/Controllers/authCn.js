@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import Admin from "../Models/adminMd.js";
 import returnData from "../Utils/returnData.js";
 import HandleError from "../Utils/handleError.js";
-import { sendAuthCode } from "../Utils/smsHandler.js";
+import { sendAuthCode, verifyCode } from "../Utils/smsHandler.js";
 
 export const register = catchAsync(async (req, res, next) => {
   const { password } = req?.body;
@@ -57,7 +57,8 @@ export const login = catchAsync(async (req, res, next) => {
 });
 
 export const sendSms = catchAsync(async (req, res, next) => {
-    const { phone } = req?.body;
+    const { phone } = req.body;
+    console.log(req.body)
     const admin=await Admin.findOne({phone})
       if(!admin){
           return next(new HandleError("شماره تلفن اشتباه است"));
@@ -72,4 +73,22 @@ export const sendSms = catchAsync(async (req, res, next) => {
   })
 });
 
-export const verifySms = catchAsync(async (req, res, next) => {});
+export const verifySms = catchAsync(async (req, res, next) => {
+  const { code, phone } = req.body;
+  const admin = await Admin.findOne({ phone })
+  const verify = await verifyCode(phone, code);
+  if (!verify.success) {
+    return next(new HandleError("کد اشتباه است", 400));
+  }
+  const token = jwt.sign(
+    { id: admin._id, role: admin.role },
+    process.env.SECRET_KEY
+  );
+  return returnData(res, 201, {
+    status: "ورود با موفقیت انجام شد",
+    data: {
+      admin,
+      token,
+    },
+  });
+});

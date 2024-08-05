@@ -14,7 +14,7 @@ const blogSchema = new mongoose.Schema(
     },
     img: {
       type: String,
-      required: [true, "لطفا عکس را وارد کنید"],
+      // required: [true, "لطفا عکس را وارد کنید"],
       default: "",
     },
     categoryId:{

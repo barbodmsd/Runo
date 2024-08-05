@@ -26,6 +26,10 @@ export const deleteCategory = catchAsync(async (req, res, next) => {
   if (!deletedCategory) {
     return next(new HandleError(" کته گوری موردنظر وجود ندارد", 404));
   }
+  await Blog.updateMany(
+    { categoryId: deletedCategory._id },
+    { $set: { categoryId: "" } }
+  );
   return returnData(res, 200, {
     status: "success",
     data: { deletedCategory },

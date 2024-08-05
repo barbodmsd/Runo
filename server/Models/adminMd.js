@@ -6,7 +6,7 @@ const adminSchema = new mongoose.Schema(
       type: String,
       required: [true, "لطفا نام کاربری خود را وارد کند"],
       trim: true,
-      // unique:[true,'نام کاربری دیگری انتخاب کنید']
+      unique:[true,'نام کاربری دیگری انتخاب کنید']
     },
     password: {
       type: String,
@@ -15,8 +15,10 @@ const adminSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      // required: [true, "لطفا شماره تلفن خود را وارد کنید"],
+      required: [true, "لطفا شماره تلفن خود را وارد کنید"],
+      match:[/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/g,'شماره تلفن فورمت اشتباهی دارد'],
       trim: true,
+      unique:true
     },
     img: {
       type: String,
