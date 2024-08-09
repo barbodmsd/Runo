@@ -1,3 +1,6 @@
+# dotenv environment variable files
 .env
-config.env
-*.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
