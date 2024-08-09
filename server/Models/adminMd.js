@@ -18,7 +18,7 @@ const adminSchema = new mongoose.Schema(
       required: [true, "لطفا شماره تلفن خود را وارد کنید"],
       match:[/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/g,'شماره تلفن فورمت اشتباهی دارد'],
       trim: true,
-      unique:true
+      unique:[true,'شماره تلفن تکراری میباشد']
     },
     img: {
       type: String,

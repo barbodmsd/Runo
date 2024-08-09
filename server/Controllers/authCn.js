@@ -57,8 +57,9 @@ export const login = catchAsync(async (req, res, next) => {
 });
 
 export const sendSms = catchAsync(async (req, res, next) => {
-    const { phone } = req.body;
-    console.log(req.body)
+  console.log(req.body)
+    const { phone } = req?.body;
+    console.log(phone)
     const admin=await Admin.findOne({phone})
       if(!admin){
           return next(new HandleError("شماره تلفن اشتباه است"));
@@ -73,10 +74,13 @@ export const sendSms = catchAsync(async (req, res, next) => {
   })
 });
 
+
 export const verifySms = catchAsync(async (req, res, next) => {
-  const { code, phone } = req.body;
+  console.log('verify',req.body)
+  const { code, phone } = req?.body;
+
   const admin = await Admin.findOne({ phone })
-  const verify = await verifyCode(phone, code);
+  const verify = await verifyCode(phone,code)
   if (!verify.success) {
     return next(new HandleError("کد اشتباه است", 400));
   }
