@@ -1,12 +1,7 @@
 import express from "express";
-import {
-  deleteArticle,
-  createArticle,
-  getArticleById,
-  getAllArticle,
-  updateArticle,
-} from "../Controllers/articleCn.js";
+
 import upload from "../Utils/uploadFile.js";
+import { createArticle, deleteArticle, getAllArticle, getArticleById, updateArticle } from "../Controllers/articleCn.js";
 const articleRoute = express.Router();
 
 articleRoute

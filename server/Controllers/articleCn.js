@@ -22,10 +22,10 @@ export const getAllArticle = catchAsync(async (req, res, next) => {
     .populate()
     .sort()
     .limitFields();
-  const allArticle = features.query;
+  const allArticle =await  features.query;
   return returnData(res, 200, {
     status: "success",
-    data: { allArticle },
+    data:{allArticle},
   });
 });
 

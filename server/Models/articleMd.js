@@ -8,6 +8,7 @@ const articleSchema = new mongoose.Schema(
       trim: true,
     },
     description: {
+      type:Object,
       short: String,
       long: String,
       required: [true, "لطفا توضیحات را وارد کنید"],
