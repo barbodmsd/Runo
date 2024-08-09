@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import aboutRoute from './Routes/about.js'
+import adminRoute from './Routes/admin.js'
 import articleRoute from './Routes/article.js'
 import authRoute from './Routes/auth.js'
 import bannerRoute from './Routes/banner.js'
@@ -31,6 +32,7 @@ app.use('/banner',bannerRoute)
 app.use('/blog',blogRoute)
 app.use('/category',categoryRoute)
 app.use('/slider',sliderRoute)
+app.use('/admin',adminRoute)
 app.use('*',(req,res,next)=>{
     return next(new HandleError('Route Not Found',404))
 })
