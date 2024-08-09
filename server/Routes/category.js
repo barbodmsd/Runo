@@ -4,9 +4,10 @@ import {
   deleteCategory,
   getCategories,
 } from "../Controllers/categoryCn.js";
+import isAdmin from "../Middlewares/isAdmin.js";
 const categoryRoute = express.Router();
 
-categoryRoute.route("/").post(createCategory).get(getCategories);
-categoryRoute.route("/:id").delete(deleteCategory);
+categoryRoute.route("/").post(isAdmin,createCategory).get(getCategories);
+categoryRoute.route("/:id").delete(isAdmin,deleteCategory);
 
 export default categoryRoute;

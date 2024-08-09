@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/barbodmsd/runo"
   },
-  "author": "nima bghestani",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

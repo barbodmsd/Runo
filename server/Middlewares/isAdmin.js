@@ -1,9 +1,10 @@
 import catchAsync from "../Utils/catchAsync.js";
-import jwt from "jsonwebtoken.js";
+import jwt from "jsonwebtoken";
 import HandleError from "../Utils/handleError.js";
 const isAdmin = catchAsync(async (req, res, next) => {
   try {
     const token = req?.headers?.token.split(" ")[1];
+    console.log(req?.headers)
     const { role } = jwt.verify(token, process.env.SECRET_KEY);
     if (role != "admin") {
       return next(new HandleError("شما دسترسی لازم را ندارید", 401));
@@ -13,3 +14,5 @@ const isAdmin = catchAsync(async (req, res, next) => {
     return next(new HandleError("توکن اجباریست", 400));
   }
 });
+
+export default isAdmin

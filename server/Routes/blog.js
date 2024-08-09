@@ -7,13 +7,14 @@ import {
   updateBlog,
 } from "../Controllers/blogCn.js";
 import upload from "../Utils/uploadFile.js";
+import isAdmin from "../Middlewares/isAdmin.js";
 const blogRoute = express.Router();
 
-blogRoute.route("/").post(upload.single("file"), createBlog).get(getAllBlog);
+blogRoute.route("/").post(isAdmin,upload.single("file"), createBlog).get(getAllBlog);
 blogRoute
   .route("/:id")
   .get(getBlogById)
-  .patch(upload.single("file"), updateBlog)
-  .delete(deleteBlog);
+  .patch(isAdmin,upload.single("file"), updateBlog)
+  .delete(isAdmin,deleteBlog);
 
 export default blogRoute;

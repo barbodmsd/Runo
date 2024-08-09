@@ -5,9 +5,10 @@ import {
   getSlider,
 } from "../Controllers/sliderCn.js";
 import upload from "../Utils/uploadFile.js";
+import isAdmin from "../Middlewares/isAdmin.js";
 const sliderRoute = express.Router();
 
-sliderRoute.route("/").post(upload.single('file'),createSlider).get(getSlider);
-sliderRoute.route("/:id").delete(deleteSlider);
+sliderRoute.route("/").post(isAdmin,upload.single('file'),createSlider).get(getSlider);
+sliderRoute.route("/:id").delete(isAdmin,deleteSlider);
 
 export default sliderRoute;
