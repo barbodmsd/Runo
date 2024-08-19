@@ -47,7 +47,7 @@ export const login = catchAsync(async (req, res, next) => {
     { id: admin._id, role: admin.role },
     process.env.SECRET_KEY
   );
-  return returnData(res, 201, {
+  return returnData(res, 200, {
     status: "ورود با موفقیت انجام شد",
     data: {
       admin,
