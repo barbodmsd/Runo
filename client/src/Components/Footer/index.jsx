@@ -1,7 +1,10 @@
+import { Stack } from '@mui/material'
 import React from 'react'
 
 export default function Footer() {
   return (
-    <div>Footer</div>
+    <>
+    <Stack justifyContent={'center'} alignItems='center' height={200} fontSize={'2em'} bgcolor={'teal'} color={'white'}>Footer</Stack>
+    </>
   )
 }
