@@ -1,26 +1,29 @@
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "./HomeSlider.css";
+import { Pagination } from "swiper/modules";
+import { Box } from "@mui/material";
+import fetchData from "../../../Utils/fetchData";
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-import './styles.css';
-
-// import required modules
-import { Pagination } from 'swiper/modules';
-
-export default function App() {
+export default function HomeSlider() {
+    const [slider,setSlider]=useState()
+    useEffect(()=>{
+        (async()=>{
+            const res=await fetchData('slider')
+            setSlider(res)
+        })()
+    },[])
+    console.log(slider)
   return (
-    <>
+    <Box sx={{width:'100%',height:'60vh'}}>
       <Swiper
         pagination={{
           dynamicBullets: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
-      >
+        className='SliderSwiper'>
         <SwiperSlide>Slide 1</SwiperSlide>
         <SwiperSlide>Slide 2</SwiperSlide>
         <SwiperSlide>Slide 3</SwiperSlide>
@@ -31,6 +34,6 @@ export default function App() {
         <SwiperSlide>Slide 8</SwiperSlide>
         <SwiperSlide>Slide 9</SwiperSlide>
       </Swiper>
-    </>
+    </Box>
   );
 }

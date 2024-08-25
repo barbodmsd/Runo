@@ -14,8 +14,9 @@ import { Box, createTheme, ThemeProvider } from "@mui/material";
 const theme=createTheme({
   palette: {
     mainBg:'#0b1d26',
+    secondaryBg:'#212529',
     mainTxt:'#FBD784',
-    secondaryTxt:'#d1d1d1'
+    secondaryTxt:'#d1d1d1',
   }
 })
 export default function App() {
