@@ -8,11 +8,19 @@ import About from "./Pages/About";
 import Article from "./Pages/Article";
 import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
-import { Box } from "@mui/material";
+import { Box, createTheme, ThemeProvider } from "@mui/material";
 
+
+const theme=createTheme({
+  palette: {
+    mainBg:'#0b1d26',
+    mainTxt:'#FBD784',
+    secondaryTxt:'#d1d1d1'
+  }
+})
 export default function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Navbar />
       <Box minHeight={"80vh"}>
         <Routes>
@@ -25,6 +33,6 @@ export default function App() {
         </Routes>
       </Box>
       <Footer />
-    </>
+    </ThemeProvider>
   );
 }
