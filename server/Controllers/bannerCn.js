@@ -15,10 +15,10 @@ export const createBanner = catchAsync(async (req, res, next) => {
 });
 
 export const getBanner = catchAsync(async (req, res, next) => {
-  const Banners = await Banner.find();
+  const banners = await Banner.find();
   return returnData(res, 200, {
     status: "success",
-    data: { Banners },
+    data: { banners },
   });
 });
 
