@@ -20,20 +20,22 @@ export default function HideAppBar(props) {
           zIndex: 10,
         }}>
         <Stack>
+          <Link to={'/'}>
           <Typography
             component={"h1"}
             sx={{ color: "whitesmoke", fontSize: "24px" ,fontWeight:'bolder'}}>
-            <Link sx={{ color: "white" }}>RUNO</Link>
+            RUNO
           </Typography>
+          </Link>
         </Stack>
         <Stack direction={"row"} gap={"20px"}>
-          <Link to='/about'>
+          <Link to='/blogs'>
             <Button sx={{ color: "white",fontSize: "1.2em" ,fontWeight:'bolder' }}>وبلاگ ها</Button>
           </Link>
           <Link to='/article'>
             <Button sx={{ color: "white",fontSize: "1.2em" ,fontWeight:'bolder' }}>مقالات</Button>
           </Link>
-          <Link to='/blogs'>
+          <Link to='/about'>
             <Button sx={{ color: "white",fontSize: "1.2em" ,fontWeight:'bolder' }}>درباره ما</Button>
           </Link>
         </Stack>
