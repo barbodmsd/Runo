@@ -23,7 +23,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
-      <Box minHeight={"80vh"} bgcolor={'mainBg'}>
+      <Box minHeight={"150vh"} bgcolor={'mainBg'}>
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/blogs' element={<Blogs />} />

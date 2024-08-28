@@ -3,37 +3,39 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./HomeSlider.css";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Box } from "@mui/material";
 import fetchData from "../../../Utils/fetchData";
+import Loading from "../../../Components/Loading";
 
 export default function HomeSlider() {
-    const [slider,setSlider]=useState()
-    useEffect(()=>{
-        (async()=>{
-            const res=await fetchData('slider')
-            setSlider(res)
-        })()
-    },[])
-    console.log(slider)
+  const [slider, setSlider] = useState();
+  useEffect(() => {
+    (async () => {
+      const res = await fetchData("slider");
+      setSlider(res?.sliders);
+    })();
+  }, []);
+  const items=slider?.map((e,index)=><SwiperSlide key={index}><img style={{objectFit:'fill'}} src={import.meta.env.VITE_API+e?.img} width={'100%'} height={'100%'}/></SwiperSlide>)
   return (
-    <Box sx={{width:'100%',height:'60vh'}}>
-      <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
-        modules={[Pagination]}
-        className='SliderSwiper'>
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper>
-    </Box>
+    <>
+      {slider ? (
+        <Box sx={{ width: "100%", height: "90vh" }}>
+          <Swiper
+            pagination={{
+              dynamicBullets: true,
+            }}
+            autoplay={{
+              delay:3000
+            }}
+            modules={[Pagination,Autoplay]}
+            className='SliderSwiper'>
+            {items}
+          </Swiper>
+        </Box>
+      ) : (
+        <Loading />
+      )}
+    </>
   );
 }
