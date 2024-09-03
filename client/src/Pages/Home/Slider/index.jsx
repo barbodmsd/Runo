@@ -27,7 +27,7 @@ export const SliderCart = ({ img, title, categoryTitle }) => {
             {categoryTitle}
           </Typography>
         </Stack>
-        <Stack width={'250px'} sx={{backdropFilter: "blur(10px)",}}>
+        <Stack width={'300px'} sx={{backdropFilter: "blur(10px)",}}>
           <h2 sx={{textAlign:'right'}}>{title}</h2>
         </Stack>
       </Stack>
