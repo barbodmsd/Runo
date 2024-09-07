@@ -15,7 +15,7 @@ export const createSlider = catchAsync(async (req, res, next) => {
 });
 
 export const getSlider = catchAsync(async (req, res, next) => {
-  const sliders = await Slider.find().populate('categoryId')
+  const sliders = await Slider.find()
   return returnData(res, 200, {
     status: "success",
     data: { sliders },
