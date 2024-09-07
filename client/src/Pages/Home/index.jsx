@@ -1,10 +1,5 @@
-import React from 'react'
-import HomeSlider from './Slider'
+import React from "react";
 
 export default function Home() {
-  return (
-    <>
-    <HomeSlider/>
-    </>
-  )
+  return <></>;
 }
