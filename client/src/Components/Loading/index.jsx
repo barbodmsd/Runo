@@ -6,12 +6,12 @@ export default function Loading() {
   return (
     <Box sx={{
         position:'fixed',
-        bgcolor:'rgba(0,0,0,0.5)',
+        bgcolor:'rgba(0,0,0,0.7)',
         inset:0,
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
-        backdropFilter:'blur(2px)',
+        backdropFilter:'blur(5px)',
         zIndex:100000
     }}>
       <l-metronome size='55' speed='1.6' color='white'></l-metronome>
