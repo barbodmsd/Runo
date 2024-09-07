@@ -6,8 +6,8 @@ import { __dirname } from "../app.js";
 import HandleError from "../Utils/handleError.js";
 
 export const createSlider = catchAsync(async (req, res, next) => {
-  const img = req?.file?.filename || "";
-  const newSlider = await Slider.create({ ...req.body, img });
+  const video = req?.file?.filename || "";
+  const newSlider = await Slider.create({ ...req.body, video });
   return returnData(res, 201, {
     status: "success",
     data: { newSlider },

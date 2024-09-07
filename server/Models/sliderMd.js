@@ -7,14 +7,10 @@ const sliderSchema = new mongoose.Schema(
       required: [true, "لطفا نام را وارد کنید"],
       trim: true,
     },
-    img: {
+    video: {
       type: String,
-      required: [true, "لطفا عکس را وارد کنید"],
+      required: [true, "لطفا ویدیو را وارد کنید"],
       default: "",
-    },
-    categoryId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
     },
   },
   { timestamps: true }
