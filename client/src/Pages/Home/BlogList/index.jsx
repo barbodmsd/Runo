@@ -1,6 +1,87 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import { useEffect, useState } from "react";
 import fetchData from "../../../Utils/fetchData";
+import { motion } from "framer-motion";
+export const BlogCard = ({
+  image,
+  title,
+  id,
+  description,
+  catTitle,
+  createdAt,
+}) => {
+  return (
+    <Card
+      elevation={10}
+      component={motion.div}
+      sx={{ width: 295, height: 350, bgcolor: "transparent", pb: "5px" }}>
+      <CardMedia
+        sx={{
+          height: 200,
+          position: "relative",
+          transition: "all 0.5s",
+          filter: "brightness(50%)",
+          "&:hover": { filter: "none", transform: "scale(1.05)" },
+          cursor: "pointer",
+          objectFit: "cover",
+        }}
+        image={image}
+        title={title}>
+        {/* <Stack
+          sx={{
+            position: "absolute",
+            top: "5%",
+            right: "5%",
+            backdropFilter: "blur(2px)",
+            p:'2px 5px',
+            color: "white",
+            borderRadius:'3px',
+          }}>
+          <h4 sx={{textShadow:'0 5px  5px rgba(0,0,0,0.5)'}}>{catTitle}</h4>
+        </Stack> */}
+        <Chip
+          label={catTitle}
+          sx={{
+            position: "absolute",
+            top: "5%",
+            right: "5%",color: "white",
+            boxShadow:'0 0 20px 1px rgba(0,0,0,0.5)',
+            backdropFilter: "blur(2px)",
+          }}
+        />
+      </CardMedia>
+      <CardContent sx={{ textAlign: "right" }}>
+        <Typography
+          sx={{ fontSize: "12px", color: "grey" }}
+          variant='h6'
+          component='div'>
+          {createdAt.slice(0, 10)}
+        </Typography>
+        <Typography
+          sx={{ fontSize: "0.9em", fontWeight: "bolder", color: "white" }}
+          variant='h5'
+          component='div'>
+          {title}
+        </Typography>
+        <Typography
+          variant='body2'
+          sx={{
+            textAlign: "right",
+            fontWeight: "bold",
+            color: "grey",
+            textOverflow: "ellipsis",
+            fontSize: "0.8em",
+          }}>
+          {description.slice(0, 200)}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+};
 
 export default function BlogList() {
   const [value, setValue] = useState("");
@@ -8,7 +89,7 @@ export default function BlogList() {
   useEffect(() => {
     (async () => {
       const res = await fetchData(
-        `blog?${
+        `blog?populate=categoryId&${
           value &&
           `filters[categoryId]=${
             value == "travel"
@@ -22,11 +103,24 @@ export default function BlogList() {
         }`
       );
       setBlogs(res.blogs);
+      console.log(res.blogs);
     })();
   }, [value]);
+  const items = blogs?.map((e, index) => (
+    <BlogCard
+      key={index}
+      title={e?.title}
+      image={import.meta.env.VITE_API + e?.img}
+      catTitle={e?.categoryId?.title}
+      createdAt={e?.createdAt}
+      id={e?._id}
+      description={e?.description}
+    />
+  ));
   return (
     <>
       <Stack sx={{ my: "50px", p: "50px" }}>
+        {/* title */}
         <Box sx={{ textAlign: "right" }}>
           <Typography
             component='h2'
@@ -34,6 +128,7 @@ export default function BlogList() {
             بیشترین علاقه مندی ها
           </Typography>
         </Box>
+        {/* button */}
         <Stack
           direction='row'
           gap='10px'
@@ -65,57 +160,16 @@ export default function BlogList() {
             <h2 sx={{ fontWeight: "bolder" }}>همه</h2>
           </Button>
         </Stack>
+        {/* all blogs */}
+        <Stack
+          width={"100%"}
+          gap={"20px "}
+          justifyContent={"end"}
+          direction='row'
+          flexWrap={"wrap"}>
+          {items}
+        </Stack>
       </Stack>
     </>
   );
 }
-
-// useEffect(() => {
-//   (async () => {
-//     const res = await fetchData(
-//       `blog?${value && `filters[categoryId]=${catId}`}`
-//     );
-//     setBlogs(res.blogs);
-//     console.log({blogs});
-//   })();
-// }, [value]);
-// const handleClick = (e) => {
-//   if (e == "all") {
-//     setValue("all");
-//     setCatId("");
-//   } else if (e == "travel") {
-//     setValue("travel");
-//     setCatId("66cccae3276bed12b1150cf4");
-//   } else if (e == "fashion") {
-//     setValue("fashion");
-//     setCatId("66cccafc276bed12b1150cf6");
-//   } else if (e == "nature") {
-//     setValue("nature");
-//     setCatId("66cccb04276bed12b1150cf8");
-//   } else if (e == "adventure") {
-//     setValue("adventure");
-//     setCatId("66cccb0b276bed12b1150cfa");
-//   }
-//   console.log({ value });
-//   console.log({ catId });
-// };
-// const callBack=useCallback((e)=>{
-//   if (e == "all") {
-//     setValue("all");
-//     setCatId('')
-//   } else if (e == "travel") {
-//     setValue("travel");
-//     setCatId("66cccae3276bed12b1150cf4");
-//   } else if (e == "fashion") {
-//     setValue("fashion");
-//     setCatId("66cccafc276bed12b1150cf6");
-//   } else if (e == "nature") {
-//     setValue("nature");
-//     setCatId("66cccb04276bed12b1150cf8");
-//   } else if (e == "adventure") {
-//     setValue("adventure");
-//     setCatId("66cccb0b276bed12b1150cfa");
-//   }
-//   console.log({value})
-//   console.log({catId})
-// },[value,catId])
