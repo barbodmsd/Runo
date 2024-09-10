@@ -92,7 +92,6 @@ export default function BlogList() {
         }`
       );
       setBlogs(res.blogs);
-      console.log(res.blogs);
     })();
   }, [value]);
   const items = blogs?.map((e, index) => (

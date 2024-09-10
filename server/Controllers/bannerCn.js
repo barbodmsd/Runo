@@ -15,7 +15,7 @@ export const createBanner = catchAsync(async (req, res, next) => {
 });
 
 export const getBanner = catchAsync(async (req, res, next) => {
-  const banners = await Banner.find();
+  const banners = await Banner.find().populate('categoryId')
   return returnData(res, 200, {
     status: "success",
     data: { banners },
