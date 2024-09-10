@@ -1,5 +1,5 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import fetchData from "../../../Utils/fetchData";
 
 export default function BlogList() {
@@ -8,20 +8,20 @@ export default function BlogList() {
   useEffect(() => {
     (async () => {
       const res = await fetchData(
-        value !=""?
-          `blog?filters[categoryId]=${
-            value === "فشن"
-              ? "66cccafc276bed12b1150cf6"
-              : value === "سفر"
+        `blog?${
+          value &&
+          `filters[categoryId]=${
+            value == "travel"
               ? "66cccae3276bed12b1150cf4"
-              : value === "طبیعت"
+              : value == "fashion"
+              ? "66cccafc276bed12b1150cf6"
+              : value == "nature"
               ? "66cccb04276bed12b1150cf8"
-              : value === "ماجراجویی" && "66cccb0b276bed12b1150cfa"
+              : value == "adventure" && "66cccb0b276bed12b1150cfa"
           }`
-          :'blog'
+        }`
       );
       setBlogs(res.blogs);
-      console.log(blogs);
     })();
   }, [value]);
   return (
@@ -40,23 +40,23 @@ export default function BlogList() {
           justifyContent='end'
           sx={{ width: "100%", my: "20px" }}>
           <Button
-            onClick={() => setValue("ماجراجویی")}
-            sx={{ color: value === "ماجراجویی" ? "mainTxt" : "white" }}>
+            onClick={() => setValue("adventure")}
+            sx={{ color: value === "adventure" ? "mainTxt" : "white" }}>
             <h2 sx={{ fontWeight: "bolder" }}>ماجراجویی</h2>
           </Button>
           <Button
-            onClick={() => setValue("سفر")}
-            sx={{ color: value === "سفر" ? "mainTxt" : "white" }}>
+            onClick={() => setValue("travel")}
+            sx={{ color: value === "travel" ? "mainTxt" : "white" }}>
             <h2 sx={{ fontWeight: "bolder" }}>سفر</h2>
           </Button>
           <Button
-            onClick={() => setValue("طبیعت")}
-            sx={{ color: value === "طبیعت" ? "mainTxt" : "white" }}>
+            onClick={() => setValue("nature")}
+            sx={{ color: value === "nature" ? "mainTxt" : "white" }}>
             <h2 sx={{ fontWeight: "bolder" }}>طبیعت</h2>
           </Button>
           <Button
-            onClick={() => setValue("فشن")}
-            sx={{ color: value === "فشن" ? "mainTxt" : "white" }}>
+            onClick={() => setValue("fashion")}
+            sx={{ color: value === "fashion" ? "mainTxt" : "white" }}>
             <h2 sx={{ fontWeight: "bolder" }}>فشن</h2>
           </Button>
           <Button
@@ -69,3 +69,53 @@ export default function BlogList() {
     </>
   );
 }
+
+// useEffect(() => {
+//   (async () => {
+//     const res = await fetchData(
+//       `blog?${value && `filters[categoryId]=${catId}`}`
+//     );
+//     setBlogs(res.blogs);
+//     console.log({blogs});
+//   })();
+// }, [value]);
+// const handleClick = (e) => {
+//   if (e == "all") {
+//     setValue("all");
+//     setCatId("");
+//   } else if (e == "travel") {
+//     setValue("travel");
+//     setCatId("66cccae3276bed12b1150cf4");
+//   } else if (e == "fashion") {
+//     setValue("fashion");
+//     setCatId("66cccafc276bed12b1150cf6");
+//   } else if (e == "nature") {
+//     setValue("nature");
+//     setCatId("66cccb04276bed12b1150cf8");
+//   } else if (e == "adventure") {
+//     setValue("adventure");
+//     setCatId("66cccb0b276bed12b1150cfa");
+//   }
+//   console.log({ value });
+//   console.log({ catId });
+// };
+// const callBack=useCallback((e)=>{
+//   if (e == "all") {
+//     setValue("all");
+//     setCatId('')
+//   } else if (e == "travel") {
+//     setValue("travel");
+//     setCatId("66cccae3276bed12b1150cf4");
+//   } else if (e == "fashion") {
+//     setValue("fashion");
+//     setCatId("66cccafc276bed12b1150cf6");
+//   } else if (e == "nature") {
+//     setValue("nature");
+//     setCatId("66cccb04276bed12b1150cf8");
+//   } else if (e == "adventure") {
+//     setValue("adventure");
+//     setCatId("66cccb0b276bed12b1150cfa");
+//   }
+//   console.log({value})
+//   console.log({catId})
+// },[value,catId])
