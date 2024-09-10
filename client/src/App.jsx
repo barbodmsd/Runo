@@ -9,6 +9,7 @@ import Article from "./Pages/Article";
 import Login from "./Pages/Login";
 import NotFound from "./Pages/NotFound";
 import { Box, createTheme, ThemeProvider } from "@mui/material";
+import BlogDetails from "./Pages/BlogDetails";
 
 
 
@@ -28,6 +29,7 @@ export default function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/blogs' element={<Blogs />} />
+          <Route path='/blog-details/:id/:name' element={<BlogDetails />} />
           <Route path='/about' element={<About />} />
           <Route path='/article' element={<Article />} />
           <Route path='/login' element={<Login />} />
