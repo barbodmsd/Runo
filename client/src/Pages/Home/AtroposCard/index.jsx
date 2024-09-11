@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "./AtroposCard.css";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import { Box, Stack, Typography } from "@mui/material";
-import Atropos from "atropos/react";
 import "atropos/css";
-
-import { Pagination } from "swiper/modules";
-import fetchData from "../../../Utils/fetchData";
+import Atropos from "atropos/react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import fetchData from "../../../Utils/fetchData";
+import "./AtroposCard.css";
 
 export const BlogCard = ({ image, id, title }) => {
   return (
@@ -46,7 +47,7 @@ export const BlogCard = ({ image, id, title }) => {
                     fontSize: "1em",
                     fontWeight: "bolder",
                   }}>
-                  {title.slice(0, 20)}
+                  {title.slice(0, 25)}
                 </Typography>
               </Box>
               <Box
@@ -59,10 +60,10 @@ export const BlogCard = ({ image, id, title }) => {
                   data-atropos-offset='8'
                   sx={{
                     color: "white",
-                    fontSize: "1em",
+                    fontSize: "0.9em",
                     fontWeight: "bolder",
                   }}>
-                  {title.slice(21, 100)}
+                  {title.slice(25)}
                 </Typography>
               </Box>
             </Box>
@@ -82,29 +83,32 @@ export default function AtroposCard() {
     })();
   }, []);
   const items = blogs?.map((e, index) => (
-    <BlogCard
-      key={index}
-      image={import.meta.env.VITE_API + e?.img}
-      title={e?.title}
-      id={e?._id}
-    />
+    <SwiperSlide key={index}>
+      <BlogCard
+        image={import.meta.env.VITE_API + e?.img}
+        title={e?.title}
+        id={e?._id}
+      />
+    </SwiperSlide>
   ));
   return (
-    <>
-      {/* <Swiper pagination={true} modules={[Pagination]} className="atroposCard">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper> */}
-      <Stack direction='row' flexWrap={"wrap"} gap={"20px"}>
+    <Box height={"400px"} position={"relative"}>
+      <Box className='next'>
+        <ArrowForwardRoundedIcon />
+      </Box>
+      <Box className='prev'>
+        <ArrowBackRoundedIcon />
+      </Box>
+      <Swiper
+        navigation={{
+          nextEl: ".next",
+          prevEl: ".prev",
+        }}
+        slidesPerView={4}
+        modules={[Navigation]}
+        className='atroposCard'>
         {items}
-      </Stack>
-    </>
+      </Swiper>
+    </Box>
   );
 }
