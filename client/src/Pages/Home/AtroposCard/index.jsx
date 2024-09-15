@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from 'swiper/modules';
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import fetchData from "../../../Utils/fetchData";
 import "./AtroposCard.css";
@@ -73,15 +73,17 @@ export const BlogCard = ({ image, id, title }) => {
     </Link>
   );
 };
+
 export default function AtroposCard() {
-  const [blogs, setBlogs] = useState();
+  const [blogs, setBlogs] = useState([]);
+  
   useEffect(() => {
     (async () => {
       const res = await fetchData("blog?page=1&limit=10");
       setBlogs(res.blogs);
-      console.log(blogs);
     })();
   }, []);
+
   const items = blogs?.map((e, index) => (
     <SwiperSlide key={index}>
       <BlogCard
@@ -91,19 +93,23 @@ export default function AtroposCard() {
       />
     </SwiperSlide>
   ));
+
   return (
     <Box height={"400px"} position={"relative"}>
-      <Box className='next'>
+      {/* Swiper navigation buttons */}
+      <Box className='next' sx={{ zIndex: 10 }}>
         <ArrowForwardRoundedIcon />
       </Box>
-      <Box className='prev'>
+      <Box className='prev' sx={{ zIndex: 10 }}>
         <ArrowBackRoundedIcon />
       </Box>
+      
       <Swiper
         navigation={{
           nextEl: ".next",
           prevEl: ".prev",
         }}
+        loop={true}
         slidesPerView={4}
         modules={[Navigation]}
         className='atroposCard'>

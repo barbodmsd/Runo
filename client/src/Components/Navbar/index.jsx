@@ -17,7 +17,7 @@ export default function HideAppBar(props) {
           height: 60,
           px: "50px",
           position: "fixed",
-          zIndex: 10,
+          zIndex: 20,
         }}>
         <Stack>
           <Link to={'/'}>
