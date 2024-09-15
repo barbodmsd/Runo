@@ -16,59 +16,64 @@ export const BlogCard = ({
   createdAt,
 }) => {
   return (
-   <Link to={`/blog-details/${id}/${title.replaceAll(' ','-').toLowerCase()}`}> <Card
-   elevation={10}
-   component={motion.div}
-   sx={{ width: 295, height: 350, bgcolor: "transparent", pb: "5px" }}>
-   <CardMedia
-     sx={{
-       height: 200,
-       position: "relative",
-       transition: "all 0.5s",
-       filter: "brightness(50%)",
-       "&:hover": { filter: "none", transform: "scale(1.05)" },
-       cursor: "pointer",
-       objectFit: "cover",
-     }}
-     image={image}
-     title={title}>
-     <Chip
-       label={<h4 sx={{fontWeight:'bold'}}>{catTitle}</h4>}
-       sx={{
-         position: "absolute",
-         top: "5%",
-         right: "5%",color: "white",
-         boxShadow:'0 0 20px 1px rgba(0,0,0,0.5)',
-         backdropFilter: "blur(2px)",
-       }}
-     />
-   </CardMedia>
-   <CardContent sx={{ textAlign: "right" }}>
-     <Typography
-       sx={{ fontSize: "12px", color: "grey" }}
-       variant='h6'
-       component='div'>
-       {createdAt.slice(0, 10)}
-     </Typography>
-     <Typography
-       sx={{ fontSize: "0.9em", fontWeight: "bolder", color: "white" }}
-       variant='h5'
-       component='div'>
-       {title}
-     </Typography>
-     <Typography
-       variant='body2'
-       sx={{
-         textAlign: "right",
-         fontWeight: "bold",
-         color: "grey",
-         textOverflow: "ellipsis",
-         fontSize: "0.8em",
-       }}>
-       {description.slice(0, 200)}
-     </Typography>
-   </CardContent>
- </Card></Link>
+    <Link
+      to={`/blog-details/${id}/${title.replaceAll(" ", "-").toLowerCase()}`}>
+      {" "}
+      <Card
+        elevation={10}
+        component={motion.div}
+        sx={{ width: 295, height: 350, bgcolor: "transparent", pb: "5px" }}>
+        <CardMedia
+          sx={{
+            height: 200,
+            position: "relative",
+            transition: "all 0.5s",
+            filter: "brightness(50%)",
+            "&:hover": { filter: "none", transform: "scale(1.05)" },
+            cursor: "pointer",
+            objectFit: "cover",
+          }}
+          image={image}
+          title={title}>
+          <Chip
+            label={<h4 sx={{ fontWeight: "bold" }}>{catTitle}</h4>}
+            sx={{
+              position: "absolute",
+              top: "5%",
+              right: "5%",
+              color: "white",
+              boxShadow: "0 0 20px 1px rgba(0,0,0,0.5)",
+              backdropFilter: "blur(2px)",
+            }}
+          />
+        </CardMedia>
+        <CardContent sx={{ textAlign: "right" }}>
+          <Typography
+            sx={{ fontSize: "12px", color: "grey" }}
+            variant='h6'
+            component='div'>
+            {createdAt.slice(0, 10)}
+          </Typography>
+          <Typography
+            sx={{ fontSize: "0.9em", fontWeight: "bolder", color: "white" }}
+            variant='h5'
+            component='div'>
+            {title}
+          </Typography>
+          <Typography
+            variant='body2'
+            sx={{
+              textAlign: "right",
+              fontWeight: "bold",
+              color: "grey",
+              textOverflow: "ellipsis",
+              fontSize: "0.8em",
+            }}>
+            {description.slice(0, 200)}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
 

@@ -1,12 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=SUSE:wght@100..800&family=Vazirmatn:wght@100..900&display=swap');
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
+@font-face {
+  font-family: "IranSans";
+  src: url("/client/public/font/B_Yekan/Yekan.ttf") format("ttf"),
+    url("/client/public/font/B_Yekan/Yekan.eot") format("eot"),
+    url("/client/public/font/B_Yekan/Yekan.woff2") format("woff2"),
+    url("//client/public/font/B_Yekan/Yekan.woff") format("woff");
 }
-html,body{
-    background-color: #0b1d26;
-    font-family: 'Vazirmatn'
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+html,
+body {
+  background-color: #0b1d26;
+  font-family: "IranSans",;
 }

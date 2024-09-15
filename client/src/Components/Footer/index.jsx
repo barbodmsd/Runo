@@ -4,7 +4,7 @@ import { Box, Stack, Typography, Link, Divider } from "@mui/material";
 export default function Footer() {
   return (
     <Box
-      component="footer"
+      component='footer'
       sx={{
         backgroundColor: "secondaryBg",
         color: "grey",
@@ -13,60 +13,71 @@ export default function Footer() {
       }}>
       <Stack
         direction={{ xs: "column", sm: "row" }}
-        justifyContent="space-between"
+        justifyContent='space-between'
         spacing={4}>
         {/* Left Section: About or Blog Info */}
-        <Box>
-          <Typography variant="h6" gutterBottom>
-            My Awesome Blog
+        <Stack alignItems={'end'}>
+          <Typography variant='h6' gutterBottom>
+            Runo
           </Typography>
-          <Typography variant="body2">
-            Sharing knowledge, ideas, and insights about tech, programming, and design. Follow us for regular updates on the latest trends and tutorials.
+          <Typography variant='body2'>
+            به اشتراک گذاری دانش، ایده ها و بینش در مورد فناوری، برنامه نویسی و
+            طراحی. ما را برای به روز رسانی منظم در مورد آخرین روندها و آموزش ها
+            دنبال کنید.
           </Typography>
-        </Box>
+        </Stack>
 
         {/* Center Section: Links */}
-        <Stack direction="row" spacing={4}>
-          <Box>
-            <Typography variant="h6" gutterBottom>
-              Quick Links
+        <Stack direction='row' spacing={4} justifyContent={"right"}>
+          <Stack alignItems={'end'}>
+            <Typography variant='h6' gutterBottom>
+              منو
             </Typography>
-            <Stack spacing={1}>
-              <Link href="/about" color="inherit" underline="hover">
-                About
+            <Stack alignItems={'end'} spacing={1}>
+              <Link href='/about' color='inherit' underline='hover'>
+                درباره ما
               </Link>
-              <Link href="/contact" color="inherit" underline="hover">
-                Contact
+              <Link href='/contact' color='inherit' underline='hover'>
+                پشتیبانی
               </Link>
-              <Link href="/privacy" color="inherit" underline="hover">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" color="inherit" underline="hover">
-                Terms of Service
+              <Link href='/terms' color='inherit' underline='hover'>
+                قوانین و مقررات
               </Link>
             </Stack>
-          </Box>
+          </Stack>
 
           {/* Social Media Links */}
-          <Box>
-            <Typography variant="h6" gutterBottom>
-              Follow Us
+          <Stack alignItems={'end'}>
+            <Typography variant='h6' gutterBottom>
+              شبکه های اجنماعی 
             </Typography>
-            <Stack spacing={1}>
-              <Link href="https://twitter.com" color="inherit" underline="hover">
-                Twitter
+            <Stack alignItems={'end'}  spacing={1}>
+              <Link
+                href='https://twitter.com'
+                color='inherit'
+                underline='hover'>
+                تویتر
               </Link>
-              <Link href="https://facebook.com" color="inherit" underline="hover">
-                Facebook
+              <Link
+                href='https://facebook.com'
+                color='inherit'
+                underline='hover'>
+                فیسبوک
               </Link>
-              <Link href="https://instagram.com" color="inherit" underline="hover">
-                Instagram
+              <Link
+                href='https://instagram.com'
+                color='inherit'
+                underline='hover'>
+                ایمستاگرام
               </Link>
-              <Link href="https://linkedin.com" color="inherit" underline="hover">
-                LinkedIn
+              <Link
+                href='https://linkedin.com'
+                color='inherit'
+                underline='hover'>
+                لینکدین
               </Link>
             </Stack>
-          </Box>
+          </Stack>
         </Stack>
       </Stack>
 
@@ -74,7 +85,7 @@ export default function Footer() {
       <Divider sx={{ my: 3, borderColor: "rgba(255, 255, 255, 0.3)" }} />
 
       {/* Copyright Section */}
-      <Typography variant="body2" textAlign="center">
+      <Typography variant='body2' textAlign='center'>
         © {new Date().getFullYear()} My Awesome Blog. All rights reserved.
       </Typography>
     </Box>
