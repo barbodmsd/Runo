@@ -102,4 +102,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Developed with ❤️ by [Barbod](https://gitgub.com/barbodmsd). If you have questions or suggestions, open an issue on GitHub!
+Developed with ❤️ by [Barbod](https://github.com/barbodmsd). If you have questions or suggestions, open an issue on GitHub!
